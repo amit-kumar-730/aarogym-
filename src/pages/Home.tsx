@@ -80,6 +80,7 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Hero Section */}
+      
       <section className="relative overflow-hidden pt-16 pb-24">
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 to-blue-600/10" />
         
@@ -250,6 +251,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Stats Section */}
+      {/*
       <section className="py-16 bg-white dark:bg-gray-800" data-aos="fade-up">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -276,6 +278,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+      */}
 
       {/* Features Section */}
       <section className="py-24 bg-gray-50 dark:bg-gray-900">

@@ -92,7 +92,7 @@ const HospitalDashboard: React.FC = () => {
       phone: '+91 9876543211',
       lastVisit: '2025-01-14',
       healthStatus: 'at-risk',
-      photo: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg'
+      photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVoeNpdx4rQ-H7nREwN5l49KP3kUM0_C4VaA&s'
     },
     {
       id: '3',
@@ -103,7 +103,7 @@ const HospitalDashboard: React.FC = () => {
       phone: '+91 9876543212',
       lastVisit: '2025-01-13',
       healthStatus: 'healthy',
-      photo: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg'
+      photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-enEnFe6PrWjMekcy7CIFnKdjs-kSZ5Mg01bt7UgJTy0J0IYYbf_FHX8&s'
     }
   ];
 

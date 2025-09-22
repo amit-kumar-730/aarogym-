@@ -265,226 +265,483 @@ const HealthCard: React.FC = () => {
     link.click();
   };
 
-  const renderStep1 = () => (
-    <div className="space-y-6">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-          Personal Information
-        </h2>
-        <p className="text-gray-600 dark:text-gray-400">
-          Please provide your basic details to generate your health card
-        </p>
+  // const renderStep1 = () => (
+  //   <div className="space-y-6">
+  //     <div className="text-center mb-8">
+  //       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+  //         Personal Information
+  //       </h2>
+  //       <p className="text-gray-600 dark:text-gray-400">
+  //         Please provide your basic details to generate your health card
+  //       </p>
+  //     </div>
+
+  //     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  //       <div>
+  //         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+  //           Full Name *
+  //         </label>
+  //         <input
+  //           type="text"
+  //           value={formData.name}
+  //           onChange={(e) => handleInputChange('name', e.target.value)}
+  //           className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+  //             errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+  //           }`}
+  //           placeholder="Enter your full name"
+  //         />
+  //         {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+  //       </div>
+
+  //       <div>
+  //         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+  //           Age *
+  //         </label>
+  //         <input
+  //           type="number"
+  //           value={formData.age}
+  //           onChange={(e) => handleInputChange('age', e.target.value)}
+  //           className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+  //             errors.age ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+  //           }`}
+  //           placeholder="Enter your age"
+  //           min="18"
+  //           max="100"
+  //         />
+  //         {errors.age && <p className="text-red-500 text-sm mt-1">{errors.age}</p>}
+  //       </div>
+
+  //       <div>
+  //         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+  //           Gender *
+  //         </label>
+  //         <select
+  //           value={formData.gender}
+  //           onChange={(e) => handleInputChange('gender', e.target.value)}
+  //           className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+  //             errors.gender ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+  //           }`}
+  //         >
+  //           <option value="">Select Gender</option>
+  //           <option value="Male">Male</option>
+  //           <option value="Female">Female</option>
+  //           <option value="Other">Other</option>
+  //         </select>
+  //         {errors.gender && <p className="text-red-500 text-sm mt-1">{errors.gender}</p>}
+  //       </div>
+
+  //       <div>
+  //         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+  //           Phone Number *
+  //         </label>
+  //         <input
+  //           type="tel"
+  //           value={formData.phone}
+  //           onChange={(e) => handleInputChange('phone', e.target.value)}
+  //           className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+  //             errors.phone ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+  //           }`}
+  //           placeholder="+91 9876543210"
+  //         />
+  //         {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+  //       </div>
+
+  //       <div>
+  //         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+  //           Email Address *
+  //         </label>
+  //         <input
+  //           type="email"
+  //           value={formData.email}
+  //           onChange={(e) => handleInputChange('email', e.target.value)}
+  //           className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+  //             errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+  //           }`}
+  //           placeholder="your.email@example.com"
+  //         />
+  //         {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+  //       </div>
+
+  //       <div>
+  //         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+  //           Current Location *
+  //         </label>
+  //         <input
+  //           type="text"
+  //           value={formData.currentLocation}
+  //           onChange={(e) => handleInputChange('currentLocation', e.target.value)}
+  //           className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+  //             errors.currentLocation ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+  //           }`}
+  //           placeholder="City, District, Kerala"
+  //         />
+  //         {errors.currentLocation && <p className="text-red-500 text-sm mt-1">{errors.currentLocation}</p>}
+  //       </div>
+
+  //       <div>
+  //         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+  //           Origin State *
+  //         </label>
+  //         <select
+  //           value={formData.originState}
+  //           onChange={(e) => handleInputChange('originState', e.target.value)}
+  //           className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+  //             errors.originState ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+  //           }`}
+  //         >
+  //           <option value="">Select Origin State</option>
+  //           {states.map(state => (
+  //             <option key={state} value={state}>{state}</option>
+  //           ))}
+  //         </select>
+  //         {errors.originState && <p className="text-red-500 text-sm mt-1">{errors.originState}</p>}
+  //       </div>
+
+  //       <div>
+  //         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+  //           Occupation *
+  //         </label>
+  //         <select
+  //           value={formData.occupation}
+  //           onChange={(e) => handleInputChange('occupation', e.target.value)}
+  //           className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+  //             errors.occupation ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+  //           }`}
+  //         >
+  //           <option value="">Select Occupation</option>
+  //           {occupations.map(occupation => (
+  //             <option key={occupation} value={occupation}>{occupation}</option>
+  //           ))}
+  //         </select>
+  //         {errors.occupation && <p className="text-red-500 text-sm mt-1">{errors.occupation}</p>}
+  //       </div>
+  //     </div>
+
+  //     <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+  //       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+  //         Emergency Contact Information
+  //       </h3>
+        
+  //       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  //         <div>
+  //           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+  //             Contact Name *
+  //           </label>
+  //           <input
+  //             type="text"
+  //             value={formData.emergencyContactName}
+  //             onChange={(e) => handleInputChange('emergencyContactName', e.target.value)}
+  //             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+  //               errors.emergencyContactName ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+  //             }`}
+  //             placeholder="Emergency contact name"
+  //           />
+  //           {errors.emergencyContactName && <p className="text-red-500 text-sm mt-1">{errors.emergencyContactName}</p>}
+  //         </div>
+
+  //         <div>
+  //           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+  //             Contact Phone *
+  //           </label>
+  //           <input
+  //             type="tel"
+  //             value={formData.emergencyContactPhone}
+  //             onChange={(e) => handleInputChange('emergencyContactPhone', e.target.value)}
+  //             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+  //               errors.emergencyContactPhone ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+  //             }`}
+  //             placeholder="+91 9876543210"
+  //           />
+  //           {errors.emergencyContactPhone && <p className="text-red-500 text-sm mt-1">{errors.emergencyContactPhone}</p>}
+  //         </div>
+
+  //         <div>
+  //           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+  //             Relationship *
+  //           </label>
+  //           <input
+  //             type="text"
+  //             value={formData.emergencyContactRelation}
+  //             onChange={(e) => handleInputChange('emergencyContactRelation', e.target.value)}
+  //             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+  //               errors.emergencyContactRelation ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+  //             }`}
+  //             placeholder="e.g., Spouse, Parent, Sibling"
+  //           />
+  //           {errors.emergencyContactRelation && <p className="text-red-500 text-sm mt-1">{errors.emergencyContactRelation}</p>}
+  //         </div>
+  //       </div>
+  //     </div>
+
+  //     <div className="flex justify-end">
+  //       <button
+  //         onClick={() => setStep(2)}
+  //         className="bg-emerald-600 text-white px-8 py-3 rounded-lg hover:bg-emerald-700 smooth-transition flex items-center space-x-2"
+  //       >
+  //         <span>Next: Add Photo</span>
+  //         <Camera className="w-5 h-5" />
+  //       </button>
+  //     </div>
+  //   </div>
+  // );
+// Add this CSS to your stylesheet or in a <style> tag
+const tickerStyles = `
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+  }
+`;
+
+const renderStep1 = () => (
+  <div className="space-y-6">
+    <div className="text-center mb-8">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        Personal Information
+      </h2>
+      <p className="text-gray-600 dark:text-gray-400">
+        Please provide your basic details to generate your health card
+      </p>
+      
+      {/* Scrolling Ticker below header */}
+      <div className="mt-6 bg-red-400 dark:bg-yellow-600 py-3 overflow-hidden rounded-lg">
+        <div className="whitespace-nowrap" style={{
+          animation: 'scroll-left 15s linear infinite'
+        }}>
+          <span className="text-sm font-medium text-white dark:text-yellow-100 px-8">
+            📋 Note: Health Card Creation will only be done by verified hospitals. This form is open for every user here only for demonstration purposes.
+          </span>
+          <span className="text-sm font-medium text-white dark:text-yellow-100 px-8">
+            📋 Note: Health Card Creation will only be done by verified hospitals. This form is open for every user here only for demonstration purposes.
+          </span>
+          <span className="text-sm font-medium text-white dark:text-yellow-100 px-8">
+            📋 Note: Health Card Creation will only be done by verified hospitals. This form is open for every user here only for demonstration purposes.
+          </span>
+        </div>
+      </div>
+      
+      <style jsx>{`
+        @keyframes scroll-left {
+          0% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+      `}</style>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Full Name *
+        </label>
+        <input
+          type="text"
+          value={formData.name}
+          onChange={(e) => handleInputChange('name', e.target.value)}
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+            errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+          }`}
+          placeholder="Enter your full name"
+        />
+        {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Age *
+        </label>
+        <input
+          type="number"
+          value={formData.age}
+          onChange={(e) => handleInputChange('age', e.target.value)}
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+            errors.age ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+          }`}
+          placeholder="Enter your age"
+          min="18"
+          max="100"
+        />
+        {errors.age && <p className="text-red-500 text-sm mt-1">{errors.age}</p>}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Gender *
+        </label>
+        <select
+          value={formData.gender}
+          onChange={(e) => handleInputChange('gender', e.target.value)}
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+            errors.gender ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+          }`}
+        >
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        {errors.gender && <p className="text-red-500 text-sm mt-1">{errors.gender}</p>}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Phone Number *
+        </label>
+        <input
+          type="tel"
+          value={formData.phone}
+          onChange={(e) => handleInputChange('phone', e.target.value)}
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+            errors.phone ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+          }`}
+          placeholder="+91 9876543210"
+        />
+        {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Email Address *
+        </label>
+        <input
+          type="email"
+          value={formData.email}
+          onChange={(e) => handleInputChange('email', e.target.value)}
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+            errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+          }`}
+          placeholder="your.email@example.com"
+        />
+        {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Current Location *
+        </label>
+        <input
+          type="text"
+          value={formData.currentLocation}
+          onChange={(e) => handleInputChange('currentLocation', e.target.value)}
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+            errors.currentLocation ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+          }`}
+          placeholder="City, District, Kerala"
+        />
+        {errors.currentLocation && <p className="text-red-500 text-sm mt-1">{errors.currentLocation}</p>}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Origin State *
+        </label>
+        <select
+          value={formData.originState}
+          onChange={(e) => handleInputChange('originState', e.target.value)}
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+            errors.originState ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+          }`}
+        >
+          <option value="">Select Origin State</option>
+          {states.map(state => (
+            <option key={state} value={state}>{state}</option>
+          ))}
+        </select>
+        {errors.originState && <p className="text-red-500 text-sm mt-1">{errors.originState}</p>}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Occupation *
+        </label>
+        <select
+          value={formData.occupation}
+          onChange={(e) => handleInputChange('occupation', e.target.value)}
+          className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
+            errors.occupation ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+          }`}
+        >
+          <option value="">Select Occupation</option>
+          {occupations.map(occupation => (
+            <option key={occupation} value={occupation}>{occupation}</option>
+          ))}
+        </select>
+        {errors.occupation && <p className="text-red-500 text-sm mt-1">{errors.occupation}</p>}
+      </div>
+    </div>
+
+    <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        Emergency Contact Information
+      </h3>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Full Name *
+            Contact Name *
           </label>
           <input
             type="text"
-            value={formData.name}
-            onChange={(e) => handleInputChange('name', e.target.value)}
+            value={formData.emergencyContactName}
+            onChange={(e) => handleInputChange('emergencyContactName', e.target.value)}
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
-              errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+              errors.emergencyContactName ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
             }`}
-            placeholder="Enter your full name"
+            placeholder="Emergency contact name"
           />
-          {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+          {errors.emergencyContactName && <p className="text-red-500 text-sm mt-1">{errors.emergencyContactName}</p>}
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Age *
-          </label>
-          <input
-            type="number"
-            value={formData.age}
-            onChange={(e) => handleInputChange('age', e.target.value)}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
-              errors.age ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-            }`}
-            placeholder="Enter your age"
-            min="18"
-            max="100"
-          />
-          {errors.age && <p className="text-red-500 text-sm mt-1">{errors.age}</p>}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Gender *
-          </label>
-          <select
-            value={formData.gender}
-            onChange={(e) => handleInputChange('gender', e.target.value)}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
-              errors.gender ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-            }`}
-          >
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-          {errors.gender && <p className="text-red-500 text-sm mt-1">{errors.gender}</p>}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Phone Number *
+            Contact Phone *
           </label>
           <input
             type="tel"
-            value={formData.phone}
-            onChange={(e) => handleInputChange('phone', e.target.value)}
+            value={formData.emergencyContactPhone}
+            onChange={(e) => handleInputChange('emergencyContactPhone', e.target.value)}
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
-              errors.phone ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+              errors.emergencyContactPhone ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
             }`}
             placeholder="+91 9876543210"
           />
-          {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+          {errors.emergencyContactPhone && <p className="text-red-500 text-sm mt-1">{errors.emergencyContactPhone}</p>}
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Email Address *
-          </label>
-          <input
-            type="email"
-            value={formData.email}
-            onChange={(e) => handleInputChange('email', e.target.value)}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
-              errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-            }`}
-            placeholder="your.email@example.com"
-          />
-          {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Current Location *
+            Relationship *
           </label>
           <input
             type="text"
-            value={formData.currentLocation}
-            onChange={(e) => handleInputChange('currentLocation', e.target.value)}
+            value={formData.emergencyContactRelation}
+            onChange={(e) => handleInputChange('emergencyContactRelation', e.target.value)}
             className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
-              errors.currentLocation ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+              errors.emergencyContactRelation ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
             }`}
-            placeholder="City, District, Kerala"
+            placeholder="e.g., Spouse, Parent, Sibling"
           />
-          {errors.currentLocation && <p className="text-red-500 text-sm mt-1">{errors.currentLocation}</p>}
+          {errors.emergencyContactRelation && <p className="text-red-500 text-sm mt-1">{errors.emergencyContactRelation}</p>}
         </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Origin State *
-          </label>
-          <select
-            value={formData.originState}
-            onChange={(e) => handleInputChange('originState', e.target.value)}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
-              errors.originState ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-            }`}
-          >
-            <option value="">Select Origin State</option>
-            {states.map(state => (
-              <option key={state} value={state}>{state}</option>
-            ))}
-          </select>
-          {errors.originState && <p className="text-red-500 text-sm mt-1">{errors.originState}</p>}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Occupation *
-          </label>
-          <select
-            value={formData.occupation}
-            onChange={(e) => handleInputChange('occupation', e.target.value)}
-            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
-              errors.occupation ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-            }`}
-          >
-            <option value="">Select Occupation</option>
-            {occupations.map(occupation => (
-              <option key={occupation} value={occupation}>{occupation}</option>
-            ))}
-          </select>
-          {errors.occupation && <p className="text-red-500 text-sm mt-1">{errors.occupation}</p>}
-        </div>
-      </div>
-
-      <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-          Emergency Contact Information
-        </h3>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Contact Name *
-            </label>
-            <input
-              type="text"
-              value={formData.emergencyContactName}
-              onChange={(e) => handleInputChange('emergencyContactName', e.target.value)}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
-                errors.emergencyContactName ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-              }`}
-              placeholder="Emergency contact name"
-            />
-            {errors.emergencyContactName && <p className="text-red-500 text-sm mt-1">{errors.emergencyContactName}</p>}
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Contact Phone *
-            </label>
-            <input
-              type="tel"
-              value={formData.emergencyContactPhone}
-              onChange={(e) => handleInputChange('emergencyContactPhone', e.target.value)}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
-                errors.emergencyContactPhone ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-              }`}
-              placeholder="+91 9876543210"
-            />
-            {errors.emergencyContactPhone && <p className="text-red-500 text-sm mt-1">{errors.emergencyContactPhone}</p>}
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Relationship *
-            </label>
-            <input
-              type="text"
-              value={formData.emergencyContactRelation}
-              onChange={(e) => handleInputChange('emergencyContactRelation', e.target.value)}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent dark:bg-gray-700 dark:text-white ${
-                errors.emergencyContactRelation ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-              }`}
-              placeholder="e.g., Spouse, Parent, Sibling"
-            />
-            {errors.emergencyContactRelation && <p className="text-red-500 text-sm mt-1">{errors.emergencyContactRelation}</p>}
-          </div>
-        </div>
-      </div>
-
-      <div className="flex justify-end">
-        <button
-          onClick={() => setStep(2)}
-          className="bg-emerald-600 text-white px-8 py-3 rounded-lg hover:bg-emerald-700 smooth-transition flex items-center space-x-2"
-        >
-          <span>Next: Add Photo</span>
-          <Camera className="w-5 h-5" />
-        </button>
       </div>
     </div>
-  );
 
+    <div className="flex justify-end">
+      <button
+        onClick={() => setStep(2)}
+        className="bg-emerald-600 text-white px-8 py-3 rounded-lg hover:bg-emerald-700 smooth-transition flex items-center space-x-2"
+      >
+        <span>Next: Add Photo</span>
+        <Camera className="w-5 h-5" />
+      </button>
+    </div>
+  </div>
+);
   const renderStep2 = () => (
     <div className="space-y-6">
       <div className="text-center mb-8">

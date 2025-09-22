@@ -56,11 +56,13 @@ const Footer: React.FC = () => {
             >
               <Link to="/" className="flex items-center space-x-2 mb-4">
                 <div className="relative">
-                  <Heart className="w-8 h-8 text-emerald-400 fill-current" />
-                  <Shield className="w-4 h-4 text-blue-400 absolute -top-1 -right-1" />
+                  {/* <Heart className="w-8 h-8 text-emerald-400 fill-current" /> */}
+                  <img src="logo.Aro.svg" alt="" className="w-9 h-9 fill-current" />
+                  {/* <Shield className="w-4 h-4 text-blue-400 absolute -top-1 -right-1" /> */}
                 </div>
                 <div>
-                  <span className="text-xl font-bold text-emerald-400">Aarogyam</span>
+                  {/* <span className="text-xl font-bold text-emerald-400">Aarogyam</span> */}
+                  <img src="logo.svg" alt="" className="h-7 mb-1"/>
                   <div className="text-xs text-gray-400 -mt-1">
                     Kerala Health System
                   </div>
