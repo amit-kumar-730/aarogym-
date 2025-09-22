@@ -626,14 +626,19 @@ const Signup: React.FC = () => {
         >
           <Link to="/" className="inline-flex items-center space-x-2 mb-6">
             <div className="relative">
-              <Heart className="w-10 h-10 text-emerald-600 fill-current" />
-              <Shield className="w-5 h-5 text-blue-600 absolute -top-1 -right-1" />
+              {/* <Heart className="w-10 h-10 text-emerald-600 fill-current" />
+              <Shield className="w-5 h-5 text-blue-600 absolute -top-1 -right-1" /> */}
+              <img src="logo.Aro.svg" alt=""  className='h-14'/>
             </div>
             <div>
-              <span className="text-2xl font-bold text-gradient">Aarogyam</span>
-              <div className="text-xs text-gray-600 dark:text-gray-400 -mt-1">
+              <img src="logo.svg" alt="" className='h-9'/>
+              <div className="text-base text-gray-600 dark:text-gray-400 -mt-1">
                 Kerala Health System
               </div>
+              {/* <span className="text-2xl font-bold text-gradient">Aarogyam</span>
+              <div className="text-xs text-gray-600 dark:text-gray-400 -mt-1">
+                Kerala Health System
+              </div> */}
             </div>
           </Link>
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
