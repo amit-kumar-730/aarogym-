@@ -1,26 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
 import { useTranslation } from '../hooks/useTranslation';
-import { 
-  Shield, 
-  Activity, 
-  Bot, 
-  Award, 
-  ArrowRight, 
-  QrCode, 
-  MapPin, 
-  Users, 
-  Heart,
-  CheckCircle,
-  Globe,
-  Smartphone,
-  Zap
-} from 'lucide-react';
+import { Shield, Activity, Bot, Award, ArrowRight, QrCode, MapPin, Users, Heart,CheckCircle,Globe,Smartphone,Zap,Info,Copy, Check} from 'lucide-react';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
+  const [copiedItems, setCopiedItems] = useState<{ [key: string]: boolean }>({});
+
+  const handleCopy = async (text: string, itemKey: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedItems(prev => ({ ...prev, [itemKey]: true }));
+      
+      // Reset the copied state after 2 seconds
+      setTimeout(() => {
+        setCopiedItems(prev => ({ ...prev, [itemKey]: false }));
+      }, 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
 
   useEffect(() => {
     AOS.init({
@@ -74,13 +75,162 @@ const Home: React.FC = () => {
     'Real-time outbreak alerts and notifications',
     'Transparent hospital ratings and reviews',
     'AI-powered health assistance',
-    'Emergency contact integration',
+    'Emergency contact integration ',
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      {/* Hero Section */}
+      {/* Login Credentials Banner */}
       
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="relative bg-gradient-to-r from-amber-100 via-yellow-100 to-orange-100 dark:from-amber-900/30 dark:via-yellow-900/30 dark:to-orange-900/30 border-b-2 border-amber-300 dark:border-amber-600 overflow-hidden"
+      >
+        {/* Animated background pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent animate-pulse" />
+        </div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 relative">
+          <div className="flex flex-col lg:flex-row items-center justify-center space-y-3 lg:space-y-0 lg:space-x-6">
+            <motion.div 
+              animate={{ 
+                scale: [1, 1.1, 1],
+                rotate: [0, 5, -5, 0]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                repeatDelay: 3
+              }}
+              className="flex items-center space-x-2"
+            >
+              <div className="relative">
+                <Info className="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-ping" />
+              </div>
+              <span className="text-lg font-bold text-amber-800 dark:text-amber-200 animate-pulse">
+                🔑 DEMO LOGIN CREDENTIALS
+              </span>
+            </motion.div>
+            
+            <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
+              {/* Migrant Credentials */}
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-lg px-4 py-2 border-2 border-emerald-200 dark:border-emerald-700 shadow-md"
+              >
+                <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-3">
+                  <span className="font-bold text-emerald-700 dark:text-emerald-300 flex items-center">
+                    👤 MIGRANT:
+                  </span>
+                  <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-2">
+                    <div className="flex items-center space-x-1">
+                      <span className="text-gray-700 dark:text-gray-300 font-mono text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                        rajeshkumar12@gmail.com
+                      </span>
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => handleCopy('rajeshkumar12@gmail.com', 'migrant-email')}
+                        className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                        title="Copy email"
+                      >
+                        {copiedItems['migrant-email'] ? (
+                          <Check className="w-3 h-3 text-green-600" />
+                        ) : (
+                          <Copy className="w-3 h-3 text-gray-500" />
+                        )}
+                      </motion.button>
+                    </div>
+                    <span className="text-gray-500">|</span>
+                    <div className="flex items-center space-x-1">
+                      <span className="text-red-600 dark:text-red-400 font-semibold">Password:</span>
+                      <div className="flex items-center space-x-1">
+                        <span className="font-mono font-bold text-red-700 dark:text-red-300 bg-red-100 dark:bg-red-900/30 px-2 py-1 rounded border border-red-300 dark:border-red-600 animate-pulse">
+                          12345678
+                        </span>
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          onClick={() => handleCopy('12345678', 'migrant-password')}
+                          className="p-1 rounded hover:bg-red-200 dark:hover:bg-red-800 transition-colors"
+                          title="Copy password"
+                        >
+                          {copiedItems['migrant-password'] ? (
+                            <Check className="w-3 h-3 text-green-600" />
+                          ) : (
+                            <Copy className="w-3 h-3 text-red-500" />
+                          )}
+                        </motion.button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Hospital Credentials */}
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-lg px-4 py-2 border-2 border-blue-200 dark:border-blue-700 shadow-md"
+              >
+                <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-3">
+                  <span className="font-bold text-blue-700 dark:text-blue-300 flex items-center">
+                    🏥 HOSPITAL:
+                  </span>
+                  <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-2">
+                    <div className="flex items-center space-x-1">
+                      <span className="text-gray-700 dark:text-gray-300 font-mono text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                        hospital12@gmail.com
+                      </span>
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => handleCopy('hospital12@gmail.com', 'hospital-email')}
+                        className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                        title="Copy email"
+                      >
+                        {copiedItems['hospital-email'] ? (
+                          <Check className="w-3 h-3 text-green-600" />
+                        ) : (
+                          <Copy className="w-3 h-3 text-gray-500" />
+                        )}
+                      </motion.button>
+                    </div>
+                    <span className="text-gray-500">|</span>
+                    <div className="flex items-center space-x-1">
+                      <span className="text-red-600 dark:text-red-400 font-semibold">Password:</span>
+                      <div className="flex items-center space-x-1">
+                        <span className="font-mono font-bold text-red-700 dark:text-red-300 bg-red-100 dark:bg-red-900/30 px-2 py-1 rounded border border-red-300 dark:border-red-600 animate-pulse">
+                          hospital12
+                        </span>
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          onClick={() => handleCopy('hospital12', 'hospital-password')}
+                          className="p-1 rounded hover:bg-red-200 dark:hover:bg-red-800 transition-colors"
+                          title="Copy password"
+                        >
+                          {copiedItems['hospital-password'] ? (
+                            <Check className="w-3 h-3 text-green-600" />
+                          ) : (
+                            <Copy className="w-3 h-3 text-red-500" />
+                          )}
+                        </motion.button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+      
+
+      {/* Hero Section */}
       <section className="relative overflow-hidden pt-16 pb-24">
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 to-blue-600/10" />
         
