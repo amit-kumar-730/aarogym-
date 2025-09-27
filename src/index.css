@@ -180,7 +180,7 @@ body {
 }
 
 .chatbot-toggle {
-  @apply w-16 h-16 bg-emerald-600 hover:bg-emerald-700 rounded-full shadow-lg flex items-center justify-center text-white cursor-pointer smooth-transition;
+  @apply w-20 h-20    flex items-center justify-center  cursor-pointer smooth-transition;
 }
 
 .chatbot-window {

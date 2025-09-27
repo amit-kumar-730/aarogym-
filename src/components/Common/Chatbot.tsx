@@ -205,11 +205,26 @@ const Chatbot: React.FC = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => dispatch(toggleChat())}
-        className={`chatbot-toggle ${isOpen ? 'bg-gray-600 hover:bg-gray-700' : ''}`}
+        className={`chatbot-toggle ${isOpen ? '' : 'relative overflow-hidden'}`}
       >
-        {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+        {/* {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />} */}
+        {isOpen ? <X className="w-6 h-6" /> : 
+          <motion.img 
+            src='chatbotLogo.svg' 
+            className="w-16 h-16"
+            animate={{
+              y: [0, -8, 0],
+              scale: [1, 1.05, 1]
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        }
         {!isOpen && (
-          <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full pulse-animation" />
+          <div className="absolute -top-1 -right-1 w-3 h-3  pulse-animation" />
         )}
       </motion.button>
     </div>

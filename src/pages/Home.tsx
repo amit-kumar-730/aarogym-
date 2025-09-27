@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AOS from 'aos';
 import { useTranslation } from '../hooks/useTranslation';
-import { Shield, Activity, Bot, Award, ArrowRight, QrCode, MapPin, Users, Heart,CheckCircle,Globe,Smartphone,Zap,Info,Copy, Check} from 'lucide-react';
+import { Shield, Activity, Bot, Award, ArrowRight, QrCode, MapPin, Users, Heart,CheckCircle,Globe,Smartphone,Zap,Info,Copy, Check, Key, Mail, Lock} from 'lucide-react';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -78,10 +78,37 @@ const Home: React.FC = () => {
     'Emergency contact integration ',
   ];
 
+  // Credential data for easier management
+  const credentials = [
+    {
+      type: 'MIGRANT',
+      icon: '👤',
+      email: 'rajeshkumar12@gmail.com',
+      password: '12345678',
+      borderColor: 'border-emerald-200 dark:border-emerald-700',
+      textColor: 'text-emerald-700 dark:text-emerald-300'
+    },
+    {
+      type: 'HOSPITAL',
+      icon: '🏥',
+      email: 'hospital12@gmail.com',
+      password: 'hospital12',
+      borderColor: 'border-blue-200 dark:border-blue-700',
+      textColor: 'text-blue-700 dark:text-blue-300'
+    },
+    {
+      type: 'ADMIN',
+      icon: '⚙️',
+      email: 'admin123@gmail.com',
+      password: '123456',
+      borderColor: 'border-purple-200 dark:border-purple-700',
+      textColor: 'text-purple-700 dark:text-purple-300'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Login Credentials Banner */}
-      
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -89,12 +116,27 @@ const Home: React.FC = () => {
         className="relative bg-gradient-to-r from-amber-100 via-yellow-100 to-orange-100 dark:from-amber-900/30 dark:via-yellow-900/30 dark:to-orange-900/30 border-b-2 border-amber-300 dark:border-amber-600 overflow-hidden"
       >
         {/* Animated background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent animate-pulse" />
+        <div className="absolute inset-0 opacity-20">
+          <motion.div 
+            className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent"
+            animate={{ x: ['-100%', '100%'] }}
+            transition={{ 
+              duration: 3,
+              repeat: Infinity,
+              repeatDelay: 2,
+              ease: "easeInOut"
+            }}
+          />
         </div>
         
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 relative">
-          <div className="flex flex-col lg:flex-row items-center justify-center space-y-3 lg:space-y-0 lg:space-x-6">
+        <div className="container mx-auto px-2 sm:px-4 lg:px-6 py-3 relative">
+          {/* Header */}
+          <motion.div 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex items-center justify-center mb-3"
+          >
             <motion.div 
               animate={{ 
                 scale: [1, 1.1, 1],
@@ -108,126 +150,157 @@ const Home: React.FC = () => {
               className="flex items-center space-x-2"
             >
               <div className="relative">
-                <Info className="w-6 h-6 text-amber-600 dark:text-amber-400" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-ping" />
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                >
+                  <Key className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                </motion.div>
+                <motion.div 
+                  className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                />
               </div>
-              <span className="text-lg font-bold text-amber-800 dark:text-amber-200 animate-pulse">
+              <motion.span 
+                className="text-sm sm:text-base font-bold text-amber-800 dark:text-amber-200"
+                animate={{ opacity: [0.7, 1, 0.7] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
                 🔑 DEMO LOGIN CREDENTIALS
-              </span>
+              </motion.span>
             </motion.div>
-            
-            <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
-              {/* Migrant Credentials */}
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-lg px-4 py-2 border-2 border-emerald-200 dark:border-emerald-700 shadow-md"
+          </motion.div>
+          
+          {/* Credentials Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 sm:gap-3">
+            {credentials.map((cred, index) => (
+              <motion.div
+                key={cred.type}
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                whileHover={{ 
+                  scale: 1.02,
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
+                }}
+                className={`bg-white/90 dark:bg-gray-800/90 backdrop-blur rounded-lg px-2 sm:px-3 py-2 border-2 ${cred.borderColor} shadow-md hover:shadow-lg transition-all duration-300`}
               >
-                <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-3">
-                  <span className="font-bold text-emerald-700 dark:text-emerald-300 flex items-center">
-                    👤 MIGRANT:
-                  </span>
-                  <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-2">
+                <div className="space-y-2">
+                  {/* Header */}
+                  <motion.div 
+                    className="flex items-center justify-center space-x-1"
+                    animate={{ y: [0, -2, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                  >
+                    <span className="text-sm sm:text-base">{cred.icon}</span>
+                    <span className={`font-bold text-xs sm:text-sm ${cred.textColor}`}>
+                      {cred.type}
+                    </span>
+                  </motion.div>
+                  
+                  {/* Credentials in single line */}
+                  <div className="flex items-center justify-center space-x-1 text-xs">
                     <div className="flex items-center space-x-1">
-                      <span className="text-gray-700 dark:text-gray-300 font-mono text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
-                        rajeshkumar12@gmail.com
+                      <Mail className="w-3 h-3 text-gray-500 flex-shrink-0" />
+                      <span className="text-gray-700 dark:text-gray-300 font-mono bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded">
+                        {cred.email}
                       </span>
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        onClick={() => handleCopy('rajeshkumar12@gmail.com', 'migrant-email')}
-                        className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                        onClick={() => handleCopy(cred.email, `${cred.type.toLowerCase()}-email`)}
+                        className="p-0.5 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                         title="Copy email"
                       >
-                        {copiedItems['migrant-email'] ? (
-                          <Check className="w-3 h-3 text-green-600" />
-                        ) : (
-                          <Copy className="w-3 h-3 text-gray-500" />
-                        )}
+                        <motion.div
+                          animate={copiedItems[`${cred.type.toLowerCase()}-email`] ? { scale: [1, 1.2, 1] } : {}}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {copiedItems[`${cred.type.toLowerCase()}-email`] ? (
+                            <Check className="w-2.5 h-2.5 text-green-600" />
+                          ) : (
+                            <Copy className="w-2.5 h-2.5 text-gray-500" />
+                          )}
+                        </motion.div>
                       </motion.button>
                     </div>
-                    <span className="text-gray-500">|</span>
+                    
+                    <span className="text-gray-400 mx-1">|</span>
+                    
                     <div className="flex items-center space-x-1">
-                      <span className="text-red-600 dark:text-red-400 font-semibold">Password:</span>
-                      <div className="flex items-center space-x-1">
-                        <span className="font-mono font-bold text-red-700 dark:text-red-300 bg-red-100 dark:bg-red-900/30 px-2 py-1 rounded border border-red-300 dark:border-red-600 animate-pulse">
-                          12345678
-                        </span>
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          onClick={() => handleCopy('12345678', 'migrant-password')}
-                          className="p-1 rounded hover:bg-red-200 dark:hover:bg-red-800 transition-colors"
-                          title="Copy password"
-                        >
-                          {copiedItems['migrant-password'] ? (
-                            <Check className="w-3 h-3 text-green-600" />
-                          ) : (
-                            <Copy className="w-3 h-3 text-red-500" />
-                          )}
-                        </motion.button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Hospital Credentials */}
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="bg-white/80 dark:bg-gray-800/80 backdrop-blur rounded-lg px-4 py-2 border-2 border-blue-200 dark:border-blue-700 shadow-md"
-              >
-                <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-3">
-                  <span className="font-bold text-blue-700 dark:text-blue-300 flex items-center">
-                    🏥 HOSPITAL:
-                  </span>
-                  <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-2">
-                    <div className="flex items-center space-x-1">
-                      <span className="text-gray-700 dark:text-gray-300 font-mono text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
-                        hospital12@gmail.com
-                      </span>
+                      <Lock className="w-3 h-3 text-red-500 flex-shrink-0" />
+                      <motion.span 
+                        className="font-mono font-bold text-red-700 dark:text-red-300 bg-red-100 dark:bg-red-900/30 px-1 py-0.5 rounded border border-red-300 dark:border-red-600"
+                        animate={{ 
+                          boxShadow: [
+                            "0 0 0px rgba(239, 68, 68, 0.3)",
+                            "0 0 8px rgba(239, 68, 68, 0.5)",
+                            "0 0 0px rgba(239, 68, 68, 0.3)"
+                          ]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+                      >
+                        {cred.password}
+                      </motion.span>
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        onClick={() => handleCopy('hospital12@gmail.com', 'hospital-email')}
-                        className="p-1 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-                        title="Copy email"
+                        onClick={() => handleCopy(cred.password, `${cred.type.toLowerCase()}-password`)}
+                        className="p-0.5 rounded hover:bg-red-200 dark:hover:bg-red-800 transition-colors"
+                        title="Copy password"
                       >
-                        {copiedItems['hospital-email'] ? (
-                          <Check className="w-3 h-3 text-green-600" />
-                        ) : (
-                          <Copy className="w-3 h-3 text-gray-500" />
-                        )}
-                      </motion.button>
-                    </div>
-                    <span className="text-gray-500">|</span>
-                    <div className="flex items-center space-x-1">
-                      <span className="text-red-600 dark:text-red-400 font-semibold">Password:</span>
-                      <div className="flex items-center space-x-1">
-                        <span className="font-mono font-bold text-red-700 dark:text-red-300 bg-red-100 dark:bg-red-900/30 px-2 py-1 rounded border border-red-300 dark:border-red-600 animate-pulse">
-                          hospital12
-                        </span>
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          onClick={() => handleCopy('hospital12', 'hospital-password')}
-                          className="p-1 rounded hover:bg-red-200 dark:hover:bg-red-800 transition-colors"
-                          title="Copy password"
+                        <motion.div
+                          animate={copiedItems[`${cred.type.toLowerCase()}-password`] ? { scale: [1, 1.2, 1] } : {}}
+                          transition={{ duration: 0.3 }}
                         >
-                          {copiedItems['hospital-password'] ? (
-                            <Check className="w-3 h-3 text-green-600" />
+                          {copiedItems[`${cred.type.toLowerCase()}-password`] ? (
+                            <Check className="w-2.5 h-2.5 text-green-600" />
                           ) : (
-                            <Copy className="w-3 h-3 text-red-500" />
+                            <Copy className="w-2.5 h-2.5 text-red-500" />
                           )}
-                        </motion.button>
-                      </div>
+                        </motion.div>
+                      </motion.button>
                     </div>
                   </div>
                 </div>
               </motion.div>
-            </div>
+            ))}
           </div>
+          
+          {/* Bottom indicator */}
+          <motion.div 
+            className="flex justify-center mt-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            <motion.div
+              className="flex space-x-1"
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  className="w-2 h-2 bg-amber-500 rounded-full"
+                  animate={{ opacity: [0.3, 1, 0.3] }}
+                  transition={{ 
+                    duration: 1.5, 
+                    repeat: Infinity,
+                    delay: i * 0.2
+                  }}
+                />
+              ))}
+            </motion.div>
+          </motion.div>
         </div>
       </motion.div>
+
+      {/* Rest of your home component content goes here */}
+      {/* Add your existing JSX content below this comment */}
+      
+    
       
 
       {/* Hero Section */}
