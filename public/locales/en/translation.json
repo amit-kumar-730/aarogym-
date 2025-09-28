@@ -1,0 +1,377 @@
+{
+  "nav": {
+    "home": "Home",
+    "features": "Features", 
+    "hospitals": "Hospitals",
+    "hospitalMap": "Hospital Map",
+    "leaderboard": "Leaderboard",
+    "qrScanner": "QR Scanner",
+    "healthCard": "Health Card",
+    "cardGenerator": "Card Generator",
+    "outbreakAlerts": "Outbreak Alerts",
+    "feedback": "Feedback",
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout"
+  },
+  "home": {
+    "title": "Aarogyam – Kerala Migrant Health Record System",
+    "tagline": "Secure Health, Fair Access, Safer Communities",
+    "description": "Kerala Government's digital health record system providing secure, accessible healthcare services for migrant workers across the state.",
+    "getHealthCard": "Get Health Card",
+    "findHospital": "Find Hospital", 
+    "learnMore": "Learn More",
+    "features": {
+      "secureHealth": {
+        "title": "Secure Health Records",
+        "description": "Digital health cards with QR codes for instant access to medical history"
+      },
+      "outbreakAlerts": {
+        "title": "Outbreak Prevention",
+        "description": "Real-time disease outbreak alerts and prevention guidelines"
+      },
+      "aiChatbot": {
+        "title": "AI Health Assistant",
+        "description": "24/7 multilingual health support and guidance"
+      },
+      "transparency": {
+        "title": "Hospital Transparency",
+        "description": "Hospital ratings, reviews, and performance leaderboards"
+      }
+    },
+    "technology": {
+      "title": "Advanced Healthcare Technology",
+      "qr": {
+        "title": "QR-Enabled Cards",
+        "description": "Instant access to health records"
+      },
+      "mobile": {
+        "title": "Mobile-First Design", 
+        "description": "Optimized for smartphones"
+      },
+      "multilingual": {
+        "title": "Multilingual Support",
+        "description": "Available in 4 languages"
+      }
+    },
+    "statistics": {
+      "title": "Making Healthcare Accessible",
+      "migrants": "Registered Migrants",
+      "hospitals": "Partner Hospitals",
+      "districts": "Districts Covered",
+      "languages": "Languages Supported"
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "description": "Join thousands of migrant workers who trust Aarogyam for their healthcare needs.",
+      "getStarted": "Get Started Today"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Login to Your Account",
+      "selectRole": "Select Your Role",
+      "phoneNumber": "Phone Number",
+      "password": "Password",
+      "signIn": "Sign In",
+      "signingIn": "Signing in...",
+      "dontHaveAccount": "Don't have an account?",
+      "signUpHere": "Sign up here",
+      "demoCredentials": "Demo Credentials",
+      "roles": {
+        "migrant": {
+          "label": "Migrant Worker",
+          "description": "Access health cards & appointments"
+        },
+        "hospital": {
+          "label": "Hospital",
+          "description": "Manage patients & records"
+        },
+        "admin": {
+          "label": "Admin", 
+          "description": "System administration"
+        }
+      }
+    },
+    "signup": {
+      "title": "Create Account",
+      "chooseRole": "Choose Your Role",
+      "personalDetails": "Personal Details",
+      "hospitalInfo": "Hospital Information",
+      "securityPhoto": "Security & Photo",
+      "fullName": "Full Name",
+      "email": "Email Address",
+      "phoneNumber": "Phone Number",
+      "dateOfBirth": "Date of Birth",
+      "gender": "Gender",
+      "bloodGroup": "Blood Group",
+      "address": "Current Address",
+      "emergencyContact": "Emergency Contact Name",
+      "emergencyPhone": "Emergency Contact Phone",
+      "hospitalName": "Hospital Name",
+      "registrationNumber": "Registration Number",
+      "hospitalAddress": "Hospital Address",
+      "specialties": "Specialties",
+      "profilePhoto": "Profile Photo",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "termsAccepted": "I agree to the Terms & Conditions and Privacy Policy",
+      "createAccount": "Create Account",
+      "alreadyHaveAccount": "Already have an account?",
+      "signInHere": "Sign in here"
+    },
+    "otp": {
+      "title": "Verify OTP",
+      "description": "We've sent a 6-digit verification code to",
+      "enterCode": "Enter Verification Code",
+      "codeExpires": "Code expires in",
+      "verifyAndContinue": "Verify & Continue",
+      "verifying": "Verifying...",
+      "didntReceive": "Didn't receive the code?",
+      "resendOTP": "Resend OTP",
+      "resending": "Resending...",
+      "demoMode": "Demo Mode: Enter any 6-digit code to continue"
+    }
+  },
+  "dashboard": {
+    "migrant": {
+      "id": "ID",
+      "location": "Kochi, Kerala",
+      "welcome": "Welcome back",
+      "welcomeMessage": "Here's your health overview for today.",
+      "overview": "Overview",
+      "healthCard": "Health Card",
+      "appointments": "Appointments", 
+      "vaccinations": "Vaccinations",
+      "healthScore": "Health Score",
+      "upcoming": "Upcoming",
+      "vaccines": "Vaccines",
+      "goodHealth": "Good Health",
+      "thisMonth": "This Month",
+      "upToDate": "Up to Date",
+      "daysAgo": "Days Ago",
+      "healthMetrics": "Health Metrics",
+      "bloodPressure": "Blood Pressure",
+      "heartRate": "Heart Rate",
+      "temperature": "Temperature",
+      "weight": "Weight",
+      "upcomingAppointments": "Upcoming Appointments",
+      "lastCheckup": "Last Checkup",
+      "viewAll": "View All",
+      "generalCheckup": "General Checkup",
+      "amritaHospital": "Amrita Hospital",
+      "tomorrow": "Tomorrow, 10:00 AM",
+      "confirmed": "Confirmed",
+      "digitalHealthCard": "Digital Health Card",
+      "keralaMigrantHealthCard": "Kerala Migrant Health Card",
+      "ageGenderBlood": "Age: 28 • Male • O+",
+      "issued": "Issued",
+      "govtOfKerala": "Govt of Kerala",
+      "viewHealthCard": "View Health Card",
+      "downloadCard": "Download Card",
+      "emergencyContact": "Emergency Contact",
+      "emergencyContactName": "Sunita Kumar (Wife)",
+      "myAppointments": "My Appointments",
+      "bookAppointment": "Book Appointment",
+      "bloodTest": "Blood Test",
+      "jan25": "Jan 25, 2:00 PM",
+      "pending": "Pending",
+      "vaccination": "Vaccination",
+      "jan20": "Jan 20, 11:00 AM",
+      "completed": "Completed",
+      "vaccinationRecords": "Vaccination Records",
+      "vaccinationProgress": "Vaccination Progress",
+      "vaccinationStatus": "You're up to date with most vaccinations",
+      "covidBooster": "COVID-19 Booster",
+      "dec15": "Dec 15, 2023",
+      "hepatitisB": "Hepatitis B",
+      "nov20": "Nov 20, 2023",
+      "tetanus": "Tetanus",
+      "dueBy": "Due by Jan 30, 2024"
+    },
+    "hospital": {
+      "welcome": "Hospital Dashboard",
+      "overview": "Overview",
+      "patients": "Patients",
+      "appointments": "Appointments",
+      "records": "Records",
+      "settings": "Settings",
+      "totalPatients": "Total Patients",
+      "todayAppointments": "Today's Appointments",
+      "monthlyGrowth": "Monthly Growth",
+      "avgRating": "Average Rating",
+      "scanQR": "Scan QR Code",
+      "addPatient": "Add Patient"
+    },
+    "admin": {
+      "welcome": "Admin Dashboard",
+      "overview": "Overview",
+      "hospitalRequests": "Hospital Requests",
+      "migrants": "Migrants",
+      "outbreaks": "Outbreaks",
+      "settings": "Settings",
+      "totalMigrants": "Total Migrants",
+      "totalHospitals": "Total Hospitals",
+      "pendingRequests": "Pending Requests",
+      "activeOutbreaks": "Active Outbreaks",
+      "approve": "Approve",
+      "reject": "Reject"
+    }
+  },
+  "features": {
+    "hero": {
+      "title": "Comprehensive Healthcare Features",
+      "subtitle": "Advanced Digital Health Solutions for Migrant Workers",
+      "description": "Discover how Aarogyam leverages cutting-edge technology to provide secure, accessible, and comprehensive healthcare services across Kerala."
+    },
+    "main": {
+      "title": "Core Features & Capabilities",
+      "description": "Our platform combines modern technology with healthcare expertise to deliver exceptional services for migrant workers throughout Kerala."
+    },
+    "secureHealth": {
+      "title": "Secure Health Records",
+      "description": "Advanced encryption and privacy protection for all medical data with instant QR code access.",
+      "details": {
+        "encryption": "256-bit AES encryption for all health data",
+        "privacy": "GDPR compliant privacy protection",
+        "access": "Instant access via QR code scanning"
+      }
+    },
+    "qrSystem": {
+      "title": "QR Code System",
+      "description": "Revolutionary QR-based health card system for instant medical record access.",
+      "details": {
+        "instant": "Instant health record access",
+        "offline": "Works offline with cached data",
+        "universal": "Universal compatibility across devices"
+      }
+    },
+    "multilingual": {
+      "title": "Multilingual Support",
+      "description": "Complete platform available in English, Hindi, Malayalam, and Bengali languages.",
+      "details": {
+        "languages": "4 languages with native script support",
+        "realtime": "Real-time language switching",
+        "cultural": "Culturally adapted content"
+      }
+    },
+    "hospitalNetwork": {
+      "title": "Hospital Network",
+      "description": "Comprehensive network of verified hospitals and healthcare providers across Kerala.",
+      "details": {
+        "coverage": "150+ hospitals across 14 districts",
+        "verified": "Government verified healthcare providers",
+        "ratings": "Community ratings and reviews"
+      }
+    },
+    "outbreakAlerts": {
+      "title": "Outbreak Prevention",
+      "description": "Real-time disease outbreak monitoring and prevention guidelines for community safety.",
+      "details": {
+        "realtime": "Real-time outbreak monitoring",
+        "prevention": "Detailed prevention guidelines",
+        "location": "Location-based alert system"
+      }
+    },
+    "aiChatbot": {
+      "title": "AI Health Assistant",
+      "description": "24/7 multilingual AI-powered health assistant for instant support and guidance.",
+      "details": {
+        "available": "24/7 availability in all languages",
+        "intelligent": "AI-powered health recommendations",
+        "multilingual": "Native language support"
+      }
+    },
+    "technical": {
+      "title": "Technical Excellence",
+      "description": "Built with modern technology stack ensuring security, performance, and reliability.",
+      "security": {
+        "title": "Enterprise Security",
+        "description": "Bank-grade security with end-to-end encryption"
+      },
+      "mobile": {
+        "title": "Mobile Optimized",
+        "description": "Perfect experience across all devices and screen sizes"
+      },
+      "performance": {
+        "title": "High Performance",
+        "description": "Lightning-fast loading with optimized performance"
+      },
+      "compliance": {
+        "title": "Compliance Ready",
+        "description": "HIPAA, GDPR, and Indian healthcare compliance"
+      }
+    },
+    "cta": {
+      "title": "Experience the Future of Healthcare",
+      "description": "Join thousands of migrant workers who trust Aarogyam for their healthcare needs.",
+      "getStarted": "Get Started Today",
+      "learnMore": "Learn More"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "download": "Download",
+    "upload": "Upload",
+    "search": "Search",
+    "filter": "Filter",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "close": "Close",
+    "open": "Open",
+    "yes": "Yes",
+    "no": "No",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "emergency": "Emergency",
+    "urgent": "Urgent",
+    "normal": "Normal",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  },
+  "chatbot": {
+    "title": "Aarogyam Assistant",
+    "online": "Online",
+    "typeMessage": "Type your message...",
+    "quickActions": {
+      "healthCard": "Health Card",
+      "findHospital": "Find Hospital",
+      "bookAppointment": "Book Appointment",
+      "emergency": "Emergency"
+    },
+    "responses": {
+      "greeting": "Hello! How can I help you with your health today? 😊",
+      "healthCard": "🏥 I can help you with your Health Card! You can:\n\n✅ Generate a new Health Card\n✅ View your existing card\n✅ Download QR code\n\nWould you like me to redirect you to the Health Card page?",
+      "findHospital": "🏥 I can help you find the best hospitals nearby! Available options:\n\n🔍 Search by location\n⭐ Filter by ratings\n🩺 Find by specialty\n📍 Get directions\n\nShall I open the Hospital Map for you?",
+      "emergency": "🚨 EMERGENCY HELPLINES:\n\n🚑 Ambulance: 108\n🏥 Medical Emergency: 104\n👮‍♂️ Police: 100\n🚒 Fire: 101\n👩 Women Helpline: 1091\n☎️ COVID Helpline: 1075\n\nIf this is a medical emergency, please call 108 immediately!"
+    }
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "services": "Services", 
+    "support": "Support",
+    "emergency": "Emergency",
+    "followUs": "Follow Us",
+    "copyright": "© 2025 Aarogyam - Kerala Migrant Health Record System. All rights reserved. | Developed by Kerala Government Health Department",
+    "poweredBy": "This is a government initiative for the welfare of migrant workers in Kerala",
+    "emergencyNumbers": {
+      "ambulance": "Ambulance: 108",
+      "medical": "Medical Emergency: 104",
+      "covid": "COVID Helpline: 1075"
+    }
+  }
+}
