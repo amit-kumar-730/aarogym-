@@ -292,311 +292,694 @@ export const MigrantHealthReport: React.FC = () => {
     const printWindow = window.open('', '_blank');
     const currentDate = new Date().toLocaleDateString('en-IN');
     
-    const pdfContent = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="UTF-8">
-      <title>Kerala Health Report - ARG-2024-MH-001234</title>
-      <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-          line-height: 1.4; 
-          background: white;
-          position: relative;
-        }
-        .watermark {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%) rotate(15deg);
-          opacity: 0.05;
-          z-index: 1;
-          pointer-events: none;
-        }
-        .content { 
-          position: relative; 
-          z-index: 2; 
-          padding: 20px;
-          max-width: 800px;
-          margin: 0 auto;
-        }
-        .header { 
-          text-align: center; 
-          background: #1e40af; 
-          color: white; 
-          padding: 15px; 
-          margin-bottom: 20px;
-          border-radius: 8px;
-        }
-        .logo-section { 
-          display: flex; 
-          justify-content: space-between; 
-          align-items: center; 
-          margin-bottom: 20px;
-          border-bottom: 2px solid #e5e7eb;
-          padding-bottom: 15px;
-        }
-        .personal-info { 
-          display: grid; 
-          grid-template-columns: 1fr 2fr; 
-          gap: 20px; 
-          margin-bottom: 20px;
-          padding: 15px;
-          background: #f8fafc;
-          border-radius: 8px;
-        }
-        .photo { 
-          width: 120px; 
-          height: 150px; 
-          background: #e5e7eb; 
-          border-radius: 8px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-        }
-        .photo img { width: 100%; height: 100%; object-fit: cover; }
-        .details { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .detail-item { margin-bottom: 10px; }
-        .detail-label { font-weight: bold; color: #374151; font-size: 12px; }
-        .detail-value { color: #1f2937; font-size: 14px; margin-top: 2px; }
-        .health-score { 
-          text-align: center; 
-          background: linear-gradient(135deg, #eff6ff, #dbeafe); 
-          padding: 20px; 
-          border-radius: 12px; 
-          margin: 20px 0;
-          border: 2px solid #3b82f6;
-        }
-        .score-circle { 
-          display: inline-block; 
-          width: 100px; 
-          height: 100px; 
-          border: 6px solid #3b82f6; 
-          border-radius: 50%; 
-          display: flex; 
-          align-items: center; 
-          justify-content: center;
-          margin: 10px;
-        }
-        .score-text { font-size: 24px; font-weight: bold; color: #1e40af; }
-        .test-section { 
-          margin: 20px 0; 
-          page-break-inside: avoid;
-        }
-        .test-header { 
-          background: #3b82f6; 
-          color: white; 
-          padding: 10px; 
-          font-weight: bold;
-          border-radius: 6px 6px 0 0;
-        }
-        .test-table { 
-          width: 100%; 
-          border-collapse: collapse; 
-          background: white;
-          border: 1px solid #d1d5db;
-        }
-        .test-table th, .test-table td { 
-          border: 1px solid #d1d5db; 
-          padding: 8px; 
-          text-align: left; 
-          font-size: 11px;
-        }
-        .test-table th { background: #f3f4f6; font-weight: bold; }
-        .status-normal { color: #16a34a; font-weight: bold; }
-        .status-abnormal { color: #dc2626; font-weight: bold; }
-        .status-pending { color: #ca8a04; font-weight: bold; }
-        .footer { 
-          margin-top: 30px; 
-          text-align: center; 
-          font-size: 10px; 
-          color: #6b7280;
-          border-top: 1px solid #e5e7eb;
-          padding-top: 15px;
-        }
-        .signature-line { 
-          border-top: 1px solid #374151; 
-          width: 200px; 
-          margin: 40px auto 10px; 
-        }
-        @media print {
-          body { margin: 0; }
-          .content { padding: 15px; }
-        }
-        @page { margin: 1cm; }
-      </style>
-    </head>
-    <body>
-      <!-- Government Watermark -->
-      <div class="watermark">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Emblem_of_Kerala.svg/400px-Emblem_of_Kerala.svg.png" 
-             alt="Kerala Government" 
-             style="width: 300px; height: 300px;">
+    const pdfContent = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Kerala Health Report - ARG-2024-MH-001234</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Times New Roman', Times, serif; 
+      line-height: 1.4; 
+      background: white;
+      color: #000;
+    }
+    
+    @page {
+      size: A4;
+      margin: 15mm;
+    }
+    
+    .page {
+      position: relative;
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto 10px;
+      background: white;
+      page-break-after: always;
+      padding: 20px;
+      border: 3px double #1e3a8a;
+      overflow: hidden;
+    }
+    
+    .page:last-child {
+      page-break-after: auto;
+    }
+    
+    /* Government Watermark */
+    .page::before {
+      content: '';
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/5b/Government_of_Kerala_Logo.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.15;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .watermark-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-size: 80px;
+      font-weight: bold;
+      color: #1e3a8a;
+      opacity: 1;
+      z-index: 0;
+      pointer-events: none;
+      white-space: nowrap;
+      letter-spacing: 20px;
+    }
+    
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Official Header */
+    .gov-header {
+      text-align: center;
+      border-bottom: 3px double #1e3a8a;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .gov-emblem {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 8px;
+    }
+    
+    .gov-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1e3a8a;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 5px 0;
+    }
+    
+    .gov-subtitle {
+      font-size: 12px;
+      color: #1e3a8a;
+      font-weight: bold;
+      margin: 3px 0;
+    }
+    
+    .dept-name {
+      font-size: 11px;
+      color: #374151;
+      margin-top: 5px;
+    }
+    
+    /* Reference Section */
+    .ref-section {
+      display: flex;
+      justify-content: space-between;
+      margin: 12px 0;
+      padding: 8px;
+      background: #f9fafb;
+      border: 1px solid #1e3a8a;
+      font-size: 9px;
+    }
+    
+    .ref-item {
+      margin: 2px 0;
+    }
+    
+    .ref-label {
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+    
+    /* Personal Info Section */
+    .info-section {
+      margin: 12px 0;
+      border: 2px solid #1e3a8a;
+      padding: 0;
+    }
+    
+    .section-header {
+      background: #1e3a8a;
+      color: white;
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .section-content {
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 12px;
+    }
+    
+    .photo-box {
+      width: 90px;
+      height: 115px;
+      border: 2px solid #1e3a8a;
+      overflow: hidden;
+      background: #f3f4f6;
+    }
+    
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 15px;
+      font-size: 10px;
+    }
+    
+    .detail-row {
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+    }
+    
+    .detail-label {
+      font-weight: bold;
+      color: #1e3a8a;
+      font-size: 9px;
+      text-transform: uppercase;
+    }
+    
+    .detail-value {
+      color: #000;
+      font-size: 10px;
+      margin-top: 2px;
+    }
+    
+    /* Hospital Info */
+    .hospital-info {
+      margin: 12px 0;
+      border: 2px solid #1e3a8a;
+      padding: 0;
+    }
+    
+    .hospital-content {
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 15px;
+      font-size: 10px;
+    }
+    
+    /* Health Status Box */
+    .status-box {
+      margin: 12px 0;
+      border: 3px solid #1e3a8a;
+      padding: 15px;
+      text-align: center;
+      background: linear-gradient(to bottom, #ffffff, #f0f9ff);
+    }
+    
+    .status-title {
+      font-size: 12px;
+      font-weight: bold;
+      color: #1e3a8a;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+    
+    .status-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+    }
+    
+    .score-badge {
+      width: 80px;
+      height: 80px;
+      border: 4px solid #1e3a8a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .score-number {
+      font-size: 28px;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+    
+    .status-details {
+      text-align: left;
+      font-size: 10px;
+    }
+    
+    .status-line {
+      margin: 4px 0;
+      padding: 2px 0;
+    }
+    
+    .status-label {
+      font-weight: bold;
+      color: #1e3a8a;
+      display: inline-block;
+      min-width: 110px;
+    }
+    
+    /* Test Tables */
+    .test-section {
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+    
+    .test-category {
+      background: #1e3a8a;
+      color: white;
+      padding: 6px 10px;
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .test-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 2px solid #1e3a8a;
+      font-size: 9px;
+    }
+    
+    .test-table th {
+      background: #f3f4f6;
+      border: 1px solid #1e3a8a;
+      padding: 5px 4px;
+      text-align: left;
+      font-weight: bold;
+      color: #1e3a8a;
+      text-transform: uppercase;
+      font-size: 8px;
+    }
+    
+    .test-table td {
+      border: 1px solid #9ca3af;
+      padding: 4px;
+      color: #000;
+    }
+    
+    .status-normal {
+      color: #166534;
+      font-weight: bold;
+    }
+    
+    /* Official Footer */
+    .official-footer {
+      margin-top: 15px;
+      padding-top: 12px;
+      border-top: 2px solid #1e3a8a;
+      font-size: 9px;
+      text-align: center;
+    }
+    
+    .signature-section {
+      margin: 15px 0;
+      text-align: right;
+      padding-right: 40px;
+    }
+    
+    .signature-line {
+      border-top: 1px solid #000;
+      width: 180px;
+      margin: 25px 0 5px auto;
+    }
+    
+    .auth-text {
+      font-weight: bold;
+      color: #1e3a8a;
+      font-size: 10px;
+      margin: 4px 0;
+    }
+    
+    .designation {
+      font-size: 9px;
+      color: #374151;
+      font-style: italic;
+    }
+    
+    .confidential-notice {
+      background: #fef3c7;
+      border: 1px solid #d97706;
+      padding: 8px;
+      margin: 12px 0;
+      font-size: 8px;
+      text-align: center;
+    }
+    
+    .contact-info {
+      margin-top: 8px;
+      font-size: 8px;
+      color: #374151;
+    }
+    
+    .page-number {
+      margin-top: 8px;
+      font-size: 8px;
+      color: #6b7280;
+    }
+    
+    @media print {
+      body { margin: 0; padding: 0; }
+      .page { margin: 0; padding: 15mm; box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- PAGE 1 -->
+  <div class="page">
+    <div class="content">
+      <!-- Official Government Header -->
+      <div class="gov-header">
+        <div class="gov-title">Government of Kerala</div>
+        <div class="gov-subtitle">केरल सरकार</div>
+        <div class="dept-name">Department of Health and Family Welfare</div>
+        <div class="gov-subtitle" style="margin-top: 8px;">AAROGYAM - Migrant Health Record System</div>
       </div>
       
-      <div class="content">
-        <!-- Page 1 -->
-        <div class="header">
-          <h1>🏥 KERALA STATE HEALTH DEPARTMENT</h1>
-          <h2>आरोग्यम - AAROGYAM MIGRANT HEALTH RECORD SYSTEM</h2>
+      <!-- Reference Numbers -->
+      <div class="ref-section">
+        <div>
+          <div class="ref-item"><span class="ref-label">Report Reference:</span> ARG-2024-MH-001234</div>
+          <div class="ref-item"><span class="ref-label">Migrant ID:</span> KL-MIG-2025-001</div>
         </div>
-        
-        <div class="logo-section">
-          <div>
-            <h2 style="color: #1e40af; margin-bottom: 5px;">📋 HEALTH REPORT</h2>
-            <p style="color: #6b7280; font-size: 14px;">Report Ref: ARG-2024-MH-001234</p>
-          </div>
-          <div style="text-align: right;">
-            <p><strong>Issue Date:</strong> 15 March 2024</p>
-            <p><strong>Valid Till:</strong> 15 March 2025</p>
-            <p><strong>Generated:</strong> ${currentDate}</p>
-          </div>
+        <div style="text-align: right;">
+          <div class="ref-item"><span class="ref-label">Issue Date:</span> 15 March 2024</div>
+          <div class="ref-item"><span class="ref-label">Valid Until:</span> 15 March 2025</div>
+          <div class="ref-item"><span class="ref-label">Generated:</span> 29 September 2025</div>
         </div>
-        
-        <div class="personal-info">
-          <div class="photo">
+      </div>
+      
+      <!-- Personal Information -->
+      <div class="info-section">
+        <div class="section-header">Part I - Personal Information</div>
+        <div class="section-content">
+          <div class="photo-box">
             <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg" alt="Photo">
           </div>
           <div>
-            <h3 style="color: #1e40af; margin-bottom: 15px;">👤 Personal Information</h3>
-            <div class="details">
-              <div class="detail-item">
-                <div class="detail-label">Migrant ID</div>
-                <div class="detail-value">KL-MIG-2025-001</div>
+            <div class="details-grid">
+              <div class="detail-row">
+                <div class="detail-label">Full Name (English)</div>
+                <div class="detail-value">Rajesh Kumar</div>
               </div>
-              <div class="detail-item">
-                <div class="detail-label">Full Name</div>
-                <div class="detail-value">Rajesh Kumar / സുമിത് കുമാര്</div>
+              <div class="detail-row">
+                <div class="detail-label">Full Name (Malayalam)</div>
+                <div class="detail-value">സുമിത് കുമാര്</div>
               </div>
-              <div class="detail-item">
+              <div class="detail-row">
                 <div class="detail-label">Date of Birth</div>
                 <div class="detail-value">12 September 1997</div>
               </div>
-              <div class="detail-item">
+              <div class="detail-row">
                 <div class="detail-label">Gender</div>
                 <div class="detail-value">Male</div>
               </div>
-              <div class="detail-item" style="grid-column: 1 / -1;">
-                <div class="detail-label">Current Address</div>
-                <div class="detail-value">Room 12, Workers Colony, Kakkanad, Ernakulam, Kerala - 682030</div>
+              <div class="detail-row" style="grid-column: 1 / -1;">
+                <div class="detail-label">Current Residential Address</div>
+                <div class="detail-value">Room 12, Workers Colony, Kakkanad, Ernakulam District, Kerala - 682030</div>
               </div>
             </div>
           </div>
         </div>
-        
-        <div class="health-score">
-          <h3 style="margin-bottom: 15px; color: #1e40af;">🏥 Health Assessment Summary</h3>
-          <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 20px;">
-            <div class="score-circle">
-              <span class="score-text">95</span>
+      </div>
+      
+      <!-- Hospital Information -->
+      <div class="hospital-info">
+        <div class="section-header">Part II - Medical Examination Details</div>
+        <div class="hospital-content">
+          <div class="detail-row">
+            <div class="detail-label">Examining Hospital</div>
+            <div class="detail-value">Government Medical College Hospital, Ernakulam</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">Registration Number</div>
+            <div class="detail-value">GMCH-ERN-2024</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">Hospital Address</div>
+            <div class="detail-value">Kalamassery, Ernakulam District, Kerala - 683503</div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-label">Date of Examination</div>
+            <div class="detail-value">15 March 2024</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Health Assessment Summary -->
+      <div class="status-box">
+        <div class="status-title">Health Assessment Certificate</div>
+        <div class="status-content">
+          <div class="score-badge">
+            <span class="score-number">95</span>
+          </div>
+          <div class="status-details">
+            <div class="status-line">
+              <span class="status-label">Overall Health Status:</span>
+              <span style="color: #166534; font-weight: bold;">FIT FOR EMPLOYMENT</span>
             </div>
-            <div style="text-align: left;">
-              <p><strong>Overall Status:</strong> <span style="color: #16a34a;">✅ Fit for Employment</span></p>
-              <p><strong>Tests Completed:</strong> 16/16 (100%)</p>
-              <p><strong>Risk Assessment:</strong> Low Risk</p>
-              <p><strong>Next Checkup:</strong> Sep 15, 2026</p>
+            <div class="status-line">
+              <span class="status-label">Tests Completed:</span>
+              <span>16 out of 16 (100%)</span>
+            </div>
+            <div class="status-line">
+              <span class="status-label">Risk Category:</span>
+              <span style="color: #166534;">Low Risk</span>
+            </div>
+            <div class="status-line">
+              <span class="status-label">Next Examination Due:</span>
+              <span>15 September 2026</span>
             </div>
           </div>
         </div>
-        
-        <!-- Page Break -->
-        <div style="page-break-before: always;"></div>
-        
-        <!-- Page 2 - Test Results -->
-        <div class="header">
-          <h2>📊 DETAILED TEST RESULTS</h2>
-          <p>Complete Health Assessment Report</p>
-        </div>
-        
-        <div class="test-section">
-          <div class="test-header">🔴 MANDATORY TESTS (Required for all migrants)</div>
-          <table class="test-table">
-            <thead>
-              <tr>
-                <th>Test Name</th>
-                <th>Result</th>
-                <th>Normal Range</th>
-                <th>Status</th>
-                <th>Report</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>TB Screening</td><td>Negative</td><td>Negative</td><td class="status-normal">✅ Normal</td><td>📄 Attached</td></tr>
-              <tr><td>COVID-19 Test</td><td>Negative</td><td>Negative</td><td class="status-normal">✅ Normal</td><td>📄 Attached</td></tr>
-              <tr><td>Blood Pressure</td><td>120/80 mmHg</td><td>90-140/60-90 mmHg</td><td class="status-normal">✅ Normal</td><td>-</td></tr>
-              <tr><td>Weight</td><td>68 kg</td><td>BMI 18.5-24.9</td><td class="status-normal">✅ Normal</td><td>-</td></tr>
-              <tr><td>Height</td><td>170 cm</td><td>As per age</td><td class="status-normal">✅ Normal</td><td>-</td></tr>
-              <tr><td>Skin Examination</td><td>No visible infection</td><td>No infection</td><td class="status-normal">✅ Normal</td><td>-</td></tr>
-            </tbody>
-          </table>
-        </div>
-        
-        <div class="test-section">
-          <div class="test-header">🟡 RECOMMENDED TESTS (Additional health assessment)</div>
-          <table class="test-table">
-            <thead>
-              <tr>
-                <th>Test Name</th>
-                <th>Result</th>
-                <th>Normal Range</th>
-                <th>Status</th>
-                <th>Report</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Complete Blood Count</td><td>Normal</td><td>WBC: 4-11k/μL</td><td class="status-normal">✅ Normal</td><td>📄 Attached</td></tr>
-              <tr><td>Blood Sugar (Fasting)</td><td>95 mg/dL</td><td>70-100 mg/dL</td><td class="status-normal">✅ Normal</td><td>-</td></tr>
-              <tr><td>Vaccination Status</td><td>Up to date</td><td>Current</td><td class="status-normal">✅ Normal</td><td>-</td></tr>
-              <tr><td>Dengue Test</td><td>Negative</td><td>Negative</td><td class="status-normal">✅ Normal</td><td>-</td></tr>
-              <tr><td>Malaria Test</td><td>Negative</td><td>Negative</td><td class="status-normal">✅ Normal</td><td>-</td></tr>
-            </tbody>
-          </table>
-        </div>
-        
-        <div class="test-section">
-          <div class="test-header">🔵 OPTIONAL TESTS (Supplementary health screening)</div>
-          <table class="test-table">
-            <thead>
-              <tr>
-                <th>Test Name</th>
-                <th>Result</th>
-                <th>Normal Range</th>
-                <th>Status</th>
-                <th>Report</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Hepatitis B</td><td>Negative</td><td>Negative</td><td class="status-normal">✅ Normal</td><td>📄 Attached</td></tr>
-              <tr><td>HIV Test</td><td>Negative</td><td>Negative</td><td class="status-normal">✅ Normal</td><td>📄 Attached</td></tr>
-              <tr><td>Vision Test</td><td>6/6</td><td>6/6 to 6/9</td><td class="status-normal">✅ Normal</td><td>-</td></tr>
-              <tr><td>Hearing Test</td><td>Normal</td><td>Normal</td><td class="status-normal">✅ Normal</td><td>-</td></tr>
-            </tbody>
-          </table>
-        </div>
-        
-        <div class="footer">
-          <div class="signature-line"></div>
-          <p><strong>Authorized by Kerala Health Department</strong></p>
-          <p style="margin: 15px 0;">
-            <strong>🏥 Hospital:</strong> Government Medical College Hospital, Ernakulam<br>
-            <strong>📍 Address:</strong> Kalamassery, Ernakulam, Kerala - 683503<br>
-            <strong>📅 Last Checkup:</strong> 15 March 2024
-          </p>
-          <p style="margin-top: 20px; padding: 10px; background: #fef3c7; border-radius: 5px;">
-            <strong>⚠️ Confidentiality Note:</strong> This report is confidential and intended only for healthcare and administrative purposes.
-          </p>
-          <p style="margin-top: 15px;">
-            <strong>📞 Contact:</strong> 0471-2552056 | <strong>✉️ Email:</strong> health@kerala.gov.in<br>
-            <strong>🌐 Website:</strong> www.kerala.gov.in/health
-          </p>
-        </div>
       </div>
-    </body>
-    </html>
-    `;
+      
+      <!-- Footer Page 1 -->
+      <div class="official-footer">
+        <div class="confidential-notice">
+          <strong>CONFIDENTIAL DOCUMENT</strong><br>
+          This report is issued by Kerala Health Department and intended only for official healthcare and employment verification purposes.
+        </div>
+        <div class="page-number">Page 1 of 2</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- PAGE 2 -->
+  <div class="page">
+    
+    <div class="content">
+      <!-- Header Page 2 -->
+      <div class="gov-header">
+        <div class="gov-title">Government of Kerala</div>
+        <div class="dept-name">Department of Health and Family Welfare</div>
+        <div class="gov-subtitle" style="margin-top: 6px; font-size: 11px;">Detailed Medical Test Results - Report No. ARG-2024-MH-001234</div>
+      </div>
+      
+      <!-- Mandatory Tests -->
+      <div class="test-section">
+        <div class="test-category">Category A - Mandatory Health Screening Tests</div>
+        <table class="test-table">
+          <thead>
+            <tr>
+              <th style="width: 30%;">Test Name</th>
+              <th style="width: 20%;">Test Result</th>
+              <th style="width: 25%;">Normal Range / Standard</th>
+              <th style="width: 15%;">Status</th>
+              <th style="width: 10%;">Doc.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tuberculosis (TB) Screening</td>
+              <td>Negative</td>
+              <td>Negative</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">●</td>
+            </tr>
+            <tr>
+              <td>COVID-19 RT-PCR Test</td>
+              <td>Negative</td>
+              <td>Negative</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">●</td>
+            </tr>
+            <tr>
+              <td>Blood Pressure Measurement</td>
+              <td>120/80 mmHg</td>
+              <td>90-140 / 60-90 mmHg</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">-</td>
+            </tr>
+            <tr>
+              <td>Body Weight Assessment</td>
+              <td>68 kg</td>
+              <td>BMI: 18.5-24.9</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">-</td>
+            </tr>
+            <tr>
+              <td>Height Measurement</td>
+              <td>170 cm</td>
+              <td>As per age group</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">-</td>
+            </tr>
+            <tr>
+              <td>Dermatological Examination</td>
+              <td>No infection detected</td>
+              <td>No visible infection</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Recommended Tests -->
+      <div class="test-section">
+        <div class="test-category">Category B - Recommended Health Assessment Tests</div>
+        <table class="test-table">
+          <thead>
+            <tr>
+              <th style="width: 30%;">Test Name</th>
+              <th style="width: 20%;">Test Result</th>
+              <th style="width: 25%;">Normal Range / Standard</th>
+              <th style="width: 15%;">Status</th>
+              <th style="width: 10%;">Doc.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Complete Blood Count (CBC)</td>
+              <td>Within normal limits</td>
+              <td>WBC: 4000-11000/μL</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">●</td>
+            </tr>
+            <tr>
+              <td>Fasting Blood Sugar (FBS)</td>
+              <td>95 mg/dL</td>
+              <td>70-100 mg/dL</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">-</td>
+            </tr>
+            <tr>
+              <td>Vaccination Status Verification</td>
+              <td>Up to date</td>
+              <td>Current immunization</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">-</td>
+            </tr>
+            <tr>
+              <td>Dengue NS1 Antigen Test</td>
+              <td>Negative</td>
+              <td>Negative</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">-</td>
+            </tr>
+            <tr>
+              <td>Malaria Rapid Test</td>
+              <td>Negative</td>
+              <td>Negative</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Optional Tests -->
+      <div class="test-section">
+        <div class="test-category">Category C - Additional Health Screening Tests</div>
+        <table class="test-table">
+          <thead>
+            <tr>
+              <th style="width: 30%;">Test Name</th>
+              <th style="width: 20%;">Test Result</th>
+              <th style="width: 25%;">Normal Range / Standard</th>
+              <th style="width: 15%;">Status</th>
+              <th style="width: 10%;">Doc.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hepatitis B Surface Antigen</td>
+              <td>Non-Reactive</td>
+              <td>Non-Reactive</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">●</td>
+            </tr>
+            <tr>
+              <td>HIV Screening Test</td>
+              <td>Non-Reactive</td>
+              <td>Non-Reactive</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">●</td>
+            </tr>
+            <tr>
+              <td>Visual Acuity Test</td>
+              <td>6/6 (Both Eyes)</td>
+              <td>6/6 to 6/9</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">-</td>
+            </tr>
+            <tr>
+              <td>Audiometry (Hearing Test)</td>
+              <td>Within normal limits</td>
+              <td>Normal hearing</td>
+              <td class="status-normal">✓ Normal</td>
+              <td style="text-align: center;">-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Official Footer Page 2 -->
+      <div class="official-footer">
+        <div class="signature-section">
+          <div class="signature-line"></div>
+          <div class="auth-text">Authorized by Kerala Health Department</div>
+          <div class="designation">Authorized Signatory</div>
+        </div>
+        
+        <div class="confidential-notice">
+          <strong>⚠ CONFIDENTIALITY NOTICE</strong><br>
+          This report is confidential and intended only for healthcare and administrative purposes.
+        </div>
+        
+        <div class="contact-info">
+          <strong>Contact:</strong> 0471-2552056 | <strong>Email:</strong> aarogyam@kerala.gov.in
+        </div>
+        
+        <div class="page-number">Page 2 of 2 | Document ID: ARG-2024-MH-001234</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>`;
     
     if (printWindow) {
       printWindow.document.write(pdfContent);

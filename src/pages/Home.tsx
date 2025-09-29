@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import AOS from "aos";
+import OutbreakPrevention from "./OutbreakPrevention";
 import { useTranslation } from '../hooks/useTranslation';
 import {
   Shield,
@@ -63,7 +64,7 @@ const Home: React.FC = () => {
       bgColor: "bg-emerald-100 dark:bg-emerald-900/20",
     },
     {
-      url:"/outbreak-alerts",
+      url:"/outbreak-prevention",
       icon: Activity,
       title: t("home.features.outbreakAlerts.title"),
       description: t("home.features.outbreakAlerts.description"),
@@ -71,7 +72,7 @@ const Home: React.FC = () => {
       bgColor: "bg-red-100 dark:bg-red-900/20",
     },
     {
-      url:"/feature",
+      url:"/",
       icon: Bot,
       title: t("home.features.aiChatbot.title"),
       description: t("home.features.aiChatbot.description"),

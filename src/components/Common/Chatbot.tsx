@@ -271,7 +271,7 @@ const Chatbot: React.FC = () => {
   const predefinedResponses = {
     'health_card': t('chatbot.responses.healthCard'),
     'find_hospital': t('chatbot.responses.findHospital'),
-    'book_appointment': t('chatbot.responses.appointment'),
+    'book_appointment': t('chatbot.responses.bookAppointment'),
     'emergency': t('chatbot.responses.emergency'),
     'default': t('chatbot.responses.greeting'),
   };

@@ -357,7 +357,8 @@
       "greeting": "Hello! How can I help you with your health today? 😊",
       "healthCard": "🏥 I can help you with your Health Card! You can:\n\n✅ Generate a new Health Card\n✅ View your existing card\n✅ Download QR code\n\nWould you like me to redirect you to the Health Card page?",
       "findHospital": "🏥 I can help you find the best hospitals nearby! Available options:\n\n🔍 Search by location\n⭐ Filter by ratings\n🩺 Find by specialty\n📍 Get directions\n\nShall I open the Hospital Map for you?",
-      "emergency": "🚨 EMERGENCY HELPLINES:\n\n🚑 Ambulance: 108\n🏥 Medical Emergency: 104\n👮‍♂️ Police: 100\n🚒 Fire: 101\n👩 Women Helpline: 1091\n☎️ COVID Helpline: 1075\n\nIf this is a medical emergency, please call 108 immediately!"
+      "emergency": "🚨 EMERGENCY HELPLINES:\n\n🚑 Ambulance: 108\n🏥 Medical Emergency: 104\n👮‍♂️ Police: 100\n🚒 Fire: 101\n👩 Women Helpline: 1091\n☎️ COVID Helpline: 1075\n\nIf this is a medical emergency, please call 108 immediately!",
+      "bookAppointment": "📅 I can help you book an appointment! You can:\n\n✅ Schedule a new appointment\n✅ View your upcoming appointments\n✅ Cancel an existing appointment\n\nWould you like me to redirect you to the Appointment Booking page?"
     }
   },
   "footer": {

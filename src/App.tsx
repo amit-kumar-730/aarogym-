@@ -39,6 +39,7 @@ import Contact from './pages/Contact';
 import Settings from './pages/Settings';
 import MigrantProfile from './pages/MigrantProfile';
 import Unauthorized from "./pages/Unauthorized";
+import OutbreakPrevention from './pages/OutbreakPrevention';
 import "./index.css"
 
 
@@ -97,6 +98,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/unauthorized" element={<Unauthorized />} />
               <Route path="/migrantrecord" element={<MigrantHealthReport/>}></Route>
+              <Route path="/outbreak-prevention" element={<OutbreakPrevention/>}/>
             </Routes>
           </main>
           <Footer />
